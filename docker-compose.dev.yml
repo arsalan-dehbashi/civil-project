@@ -1,0 +1,13 @@
+services:
+  civil-project:
+    image: docker.arvancloud.ir/golang:1.25-alpine
+    working_dir: /app
+    command: sh -c "go install github.com/air-verse/air@latest && air -c .air.toml"
+    volumes:
+      - .:/app
+      - go_mod_cache:/go/pkg/mod
+      - go_build_cache:/root/.cache/go-build
+
+volumes:
+  go_mod_cache:
+  go_build_cache:

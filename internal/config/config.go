@@ -11,6 +11,9 @@ type Config struct {
 	CORSAllowedHeaders string
 	CORSAllowedMethods string
 	CORSMaxAgeSeconds  int
+
+	RedisHost string
+	RedisPort string
 }
 
 func LoadConfig() *Config {
@@ -25,6 +28,9 @@ func LoadConfig() *Config {
 		CORSAllowedHeaders: getEnv("CORS_ALLOWED_HEADERS", "*"),
 		CORSAllowedMethods: getEnv("CORS_ALLOWED_METHODS", "*"),
 		CORSMaxAgeSeconds:  getEnvAsInt("CORS_MAX_AGE_SECONDS", 300),
+
+		RedisHost: getEnv("REDIS_HOST", "redis"),
+		RedisPort: getEnv("REDIS_PORT", "6379"),
 	}
 
 	return cfg

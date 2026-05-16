@@ -11,6 +11,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - app_net
 
@@ -43,6 +45,11 @@ services:
       - "${REDIS_HOST_PORT:-6379}:6379"
     networks:
       - app_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   phpmyadmin:
     image: docker.arvancloud.ir/phpmyadmin:latest
