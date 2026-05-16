@@ -5,6 +5,8 @@ import (
 	"time"
 
 	"github.com/arsalan-dehbashi/civil-project.git/internal/app"
+	"github.com/arsalan-dehbashi/civil-project.git/internal/http/api/health"
+	apiv1 "github.com/arsalan-dehbashi/civil-project.git/internal/http/api/v1"
 	"github.com/arsalan-dehbashi/civil-project.git/internal/http/middleware"
 	"github.com/arsalan-dehbashi/civil-project.git/internal/utils"
 	"github.com/gin-gonic/gin"
@@ -40,8 +42,8 @@ func New(a *app.App) *gin.Engine {
 		AllowWildcard:    true,
 	}))
 
-	r.GET("/healthz", func(c *gin.Context) { c.JSON(200, gin.H{"status": "ok"}) })
-	r.GET("/readyz", func(c *gin.Context) { c.JSON(200, gin.H{"ready": true}) })
+	health.RegisterRoutes(r)
+	apiv1.Register(r, a)
 
 	return r
 }

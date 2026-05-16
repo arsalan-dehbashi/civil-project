@@ -19,6 +19,10 @@ func New(cfg *config.Config) (*App, error) {
 		return nil, err
 	}
 
+	if err := db.RunMigrations(gormDB); err != nil {
+		return nil, err
+	}
+
 	redisClient, err := redis.NewRedisClient(cfg)
 	if err != nil {
 		return nil, err
