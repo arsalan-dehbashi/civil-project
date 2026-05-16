@@ -13,17 +13,17 @@ type Config struct {
 	CORSMaxAgeSeconds  int
 }
 
-func Load() *Config {
+func LoadConfig() *Config {
 	cfg := &Config{
-		DBHost:     getEnv("DB_HOST", ""),
-		DBPort:     getEnv("DB_PORT", ""),
-		DBName:     getEnv("DB_NAME", ""),
-		DBUser:     getEnv("DB_USER", ""),
+		DBHost:     getEnv("DB_HOST", "db"),
+		DBPort:     getEnv("DB_PORT", "3306"),
+		DBName:     getEnv("DB_NAME", "civil"),
+		DBUser:     getEnv("DB_USER", "civil_user"),
 		DBPassword: getEnv("DB_PASSWORD", ""),
 
-		CORSAllowedOrigins: getEnv("CORS_ALLOWED_ORIGINS", ""),
-		CORSAllowedHeaders: getEnv("CORS_ALLOWED_HEADERS", ""),
-		CORSAllowedMethods: getEnv("CORS_ALLOWED_METHODS", ""),
+		CORSAllowedOrigins: getEnv("CORS_ALLOWED_ORIGINS", "*"),
+		CORSAllowedHeaders: getEnv("CORS_ALLOWED_HEADERS", "*"),
+		CORSAllowedMethods: getEnv("CORS_ALLOWED_METHODS", "*"),
 		CORSMaxAgeSeconds:  getEnvAsInt("CORS_MAX_AGE_SECONDS", 300),
 	}
 

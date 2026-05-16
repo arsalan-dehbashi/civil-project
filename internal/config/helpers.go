@@ -23,7 +23,7 @@ func getEnvAsInt(key string, def int) int {
 
 func getEnvAsBool(key string, def bool) bool {
 	if v := os.Getenv(key); v != "" {
-		if n, err := strconv.ParseBool(key); err == nil {
+		if n, err := strconv.ParseBool(v); err == nil {
 			return n
 		}
 	}
